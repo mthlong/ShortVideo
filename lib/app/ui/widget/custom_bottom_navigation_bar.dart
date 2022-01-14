@@ -1,4 +1,5 @@
 import 'package:final_app/app/constants/app_colors.dart';
+import 'package:final_app/app/constants/app_text_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -14,10 +15,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final barHeight = MediaQuery.of(context).size.height * 0.06;
     final changeColor = selectedPageIndex == 0 ? AppColors.black : AppColors.white;
-    final style = Theme.of(context)
-        .textTheme
-        .bodyText1!
-        .copyWith(fontSize: 11, fontWeight: FontWeight.w600);
+    // final style = Theme.of(context)
+    //     .textTheme
+    //     .bodyText1!
+    //     .copyWith(fontSize: 11, fontWeight: FontWeight.w600);
+    final style = AppTextStyle.appTextStyle(context, 11, null, FontWeight.w600);
     return BottomAppBar(
       color: changeColor,
       child: Container(

@@ -1,8 +1,32 @@
+import 'package:final_app/app/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextStyle {
   AppTextStyle._();
+
+  static TextStyle appTextStyle(
+          BuildContext context, double? fontSize, Color? color, FontWeight? fontWeight) =>
+      Theme.of(context).textTheme.bodyText1!.copyWith(
+          fontSize: fontSize ?? 13,
+          color: color ?? AppColors.black,
+          fontWeight: fontWeight ?? FontWeight.normal,
+      );
+
+  static TextStyle appTextStyleShadow(
+      BuildContext context, double? fontSize, Color? color, FontWeight? fontWeight) =>
+      Theme.of(context).textTheme.bodyText1!.copyWith(
+        shadows: <Shadow>[
+          const Shadow(
+            offset: Offset(1.0, 1.0),
+            blurRadius: 39,
+          ),
+        ],
+        fontSize: fontSize ?? 13,
+        color: color ?? AppColors.black,
+        fontWeight: fontWeight ?? FontWeight.normal,
+      );
+
   static TextStyle bold36({required Color color}) => TextStyle(
       fontSize: _getFontSize(36.0), fontWeight: FontWeight.bold, color: color);
 
@@ -57,8 +81,7 @@ class AppTextStyle {
   static TextStyle regular11({required Color color}) =>
       TextStyle(fontSize: _getFontSize(11.0), color: color);
 
-  static TextStyle regular11nav() =>
-      TextStyle(fontSize: _getFontSize(11.0));
+  static TextStyle regular11nav() => TextStyle(fontSize: _getFontSize(11.0));
 
   static TextStyle regular10({required Color color}) =>
       TextStyle(fontSize: _getFontSize(10.0), color: color);

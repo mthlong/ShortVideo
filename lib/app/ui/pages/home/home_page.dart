@@ -1,5 +1,9 @@
 import 'package:final_app/app/constants/app_colors.dart';
+import 'package:final_app/app/constants/app_text_style.dart';
+import 'package:final_app/app/data/entity/mock_data.dart';
+import 'package:final_app/app/ui/widget/video_detail.dart';
 import 'package:final_app/app/ui/widget/home_side_bar.dart';
+import 'package:final_app/app/ui/widget/video_tile.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,23 +15,25 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool _isFollowingSelected = true;
-
+  int _snappedPageIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: _buildAppBar(context),
         body: PageView.builder(
-            onPageChanged: (int page) => {print("Page changed to $page")},
+            onPageChanged: (int page) {
+              setState(() {
+                _snappedPageIndex = page;
+              });
+            },
             scrollDirection: Axis.vertical,
-            itemCount: 10,
+            itemCount: videos.length,
             itemBuilder: (context, index) {
               return Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
-                  Container(
-                    color: Colors.purple,
-                  ),
+                  VideoTile(video: videos[index], currentIndex: index, snappedPageIndex: _snappedPageIndex,),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -35,12 +41,12 @@ class _HomePageState extends State<HomePage> {
                           flex: 3,
                           child: Container(
                             height: MediaQuery.of(context).size.height / 4,
-                            color: Colors.amber,
+                            child: VideoDetail(video: videos[index],),
                           )),
-                      Expanded(child: Container(
+                      Expanded(
+                          child: Container(
                         height: MediaQuery.of(context).size.height / 1.75,
-                        color: Colors.pink,
-                        child: HomeSideBar(),
+                        child: HomeSideBar(video: videos[index],),
                       ))
                     ],
                   )
@@ -63,44 +69,33 @@ class _HomePageState extends State<HomePage> {
                 _isFollowingSelected = true;
               });
             },
-            child: Text("Following",
-                style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                    shadows: <Shadow>[
-                      const Shadow(
-                        offset: Offset(1.0, 1.0),
-                        blurRadius: 39,
-                      ),
-                    ],
-                    fontWeight: FontWeight.w600,
-                    fontSize: _isFollowingSelected ? 18 : 15,
-                    color: _isFollowingSelected
-                        ? AppColors.white
-                        : AppColors.grey)),
+            child: Text(
+              "Following",
+              style: AppTextStyle.appTextStyleShadow(
+                context,
+                _isFollowingSelected ? 18 : 15,
+                _isFollowingSelected ? AppColors.white : AppColors.grey,
+                FontWeight.w600,
+              ),
+            ),
           ),
           Text("    |    ",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1!
-                  .copyWith(fontSize: 15, color: AppColors.grey)),
+              style: AppTextStyle.appTextStyle(context, 15, AppColors.white, null)),
           GestureDetector(
             onTap: () {
               setState(() {
                 _isFollowingSelected = false;
               });
             },
-            child: Text("For you",
-                style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                    shadows: <Shadow>[
-                      const Shadow(
-                        offset: Offset(1.0, 1.0),
-                        blurRadius: 39,
-                      ),
-                    ],
-                    fontWeight: FontWeight.w600,
-                    fontSize: !_isFollowingSelected ? 18 : 15,
-                    color: !_isFollowingSelected
-                        ? AppColors.white
-                        : AppColors.grey)),
+            child: Text(
+              "For you",
+              style: AppTextStyle.appTextStyleShadow(
+                context,
+                !_isFollowingSelected ? 18 : 15,
+                !_isFollowingSelected ? AppColors.white : AppColors.grey,
+                FontWeight.w600,
+              ),
+            ),
           ),
         ],
       ),
