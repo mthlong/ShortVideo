@@ -12,7 +12,12 @@ class AppTextStyle {
           color: color ?? AppColors.black,
           fontWeight: fontWeight ?? FontWeight.normal,
       );
-
+  static TextStyle appTextStyleCaption(
+      BuildContext context, double? fontSize, FontWeight? fontWeight) =>
+      Theme.of(context).textTheme.caption!.copyWith(
+        fontSize: fontSize ?? 13,
+        fontWeight: fontWeight ?? FontWeight.normal,
+      );
   static TextStyle appTextStyleShadow(
       BuildContext context, double? fontSize, Color? color, FontWeight? fontWeight) =>
       Theme.of(context).textTheme.bodyText1!.copyWith(

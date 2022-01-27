@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:getwidget/components/loader/gf_loader.dart';
+import 'package:getwidget/components/shimmer/gf_shimmer.dart';
 
 class HomeSideBar extends StatefulWidget {
   const HomeSideBar({Key? key, required this.video}) : super(key: key);
@@ -59,7 +60,20 @@ class _HomeSideBarState extends State<HomeSideBar>
                     width: 50,
                     child: Image.asset('assets/images/disc.png'),
                   ),
-                  CircleAvatar(radius: 12, backgroundImage: NetworkImage('https://picsum.photos/id/1062/400/400'),)
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(25),
+                    child: CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        height: 20,
+                        width: 20,
+                        imageUrl:'https://picsum.photos/200',
+                        imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: imageProvider, fit: BoxFit.cover))),
+                        placeholder: (context, url) => GFShimmer(child: Container(color: AppColors.white.withOpacity(0.5), height: 20, width: 20,)),
+                        errorWidget: (context, url, error) => Icon(Icons.error)),
+                  ),
                 ],
               ),
               builder: (context, child) {
@@ -76,7 +90,7 @@ class _HomeSideBarState extends State<HomeSideBar>
   _sideBarItem(String iconName, String label, TextStyle style) {
     return Column(
       children: [
-        SvgPicture.asset('assets/images/$iconName.svg'),
+        SvgPicture.asset('assets/images/$iconName.svg', color: Colors.white.withOpacity(0.75),),
         SizedBox(
           height: 5,
         ),
@@ -109,7 +123,7 @@ class _HomeSideBarState extends State<HomeSideBar>
                     decoration: BoxDecoration(
                         image: DecorationImage(
                             image: imageProvider, fit: BoxFit.cover))),
-                placeholder: (context, url) => GFLoader(),
+                placeholder: (context, url) => GFShimmer(child: Container(color: AppColors.white.withOpacity(0.5), height: 50, width: 50,)),
                 errorWidget: (context, url, error) => Icon(Icons.error)),
           ),
         ),

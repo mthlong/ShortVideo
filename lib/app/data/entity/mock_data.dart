@@ -1,10 +1,10 @@
 import 'package:final_app/app/data/entity/user.dart';
 import 'package:final_app/app/data/entity/video.dart';
 
-User currentUser = User('main_user', 'https://i.picsum.photos/id/22/200/200.jpg?hmac=A_6iPTnt4dXFc2T3FQKaATIql7N3Hu_8qGQcdTeBweY');
-User user1 = User('Hoàng Long 🦋', 'https://i.picsum.photos/id/1006/300/200.jpg?hmac=x83pQQ7LW1UTo8HxBcIWuRIVeN_uCg0cG6keXvNvM8g');
-User user2 = User('Hoàng Anh 🦋', 'https://i.picsum.photos/id/1010/500/300.jpg?hmac=7SE0MNAloXpJXDxio2nvoshUx9roGIJ_5pZej6qdxXs');
-User user3 = User('Thành Đạt 🦋', 'https://i.picsum.photos/id/1011/540/360.jpg?hmac=Koo9845x2akkVzVFX3xxAc9BCkeGYA9VRVfLE4f0Zzk');
+User currentUser = User('main_user', 'https://picsum.photos/seed/1/200');
+User user1 = User('Hoàng Long 🦋', 'https://picsum.photos/seed/2/200');
+User user2 = User('Hoàng Anh 🦋', 'https://picsum.photos/seed/3/200');
+User user3 = User('Thành Đạt 🦋', 'https://picsum.photos/seed/4/200');
 
 final List<Video> videos = [
   Video('v1.mp4', currentUser, 'Kênh 14 là một trang web thông tin điện tử tổng hợp hoạt động tại Việt Nam. Nội dung của Kênh 14 đa phần viết về chủ đề giải trí, xã hội, người của công chúng... ',
