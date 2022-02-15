@@ -1,7 +1,7 @@
 import 'package:final_app/app/constants/app_colors.dart';
 import 'package:final_app/app/ui/pages/add_video_page.dart';
 import 'package:final_app/app/ui/pages/discover_page.dart';
-import 'package:final_app/app/ui/pages/home/home_page.dart';
+import 'package:final_app/app/ui/pages/home_page.dart';
 import 'package:final_app/app/ui/pages/inbox_page.dart';
 import 'package:final_app/app/ui/pages/profile_page.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +21,6 @@ class _NavigationContainerState extends State<NavigationContainer> {
   static const List<Widget> _pages = [
     HomePage(),
     DiscoverPage(),
-    AddVideoPage(),
     InboxPage(),
     ProfilePage()
   ];

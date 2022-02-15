@@ -14,6 +14,8 @@ class AppColors {
 
   static Color get lightPink => HexColor.fromHex('#E6436D');
 
+  static Color get redButton => HexColor.fromHex('#EA4359');
+
   static Color get white => HexColor.fromHex('#FFFFFF');
 
   static Color get black => HexColor.fromHex('#000000');

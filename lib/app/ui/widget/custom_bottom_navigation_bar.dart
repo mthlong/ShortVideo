@@ -1,5 +1,6 @@
 import 'package:final_app/app/constants/app_colors.dart';
 import 'package:final_app/app/constants/app_text_style.dart';
+import 'package:final_app/app/ui/pages/add_video_page.dart';
 import 'package:final_app/app/ui/widget/space_width.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final barHeight = MediaQuery.of(context).size.height * 0.06;
-    final changeColor = selectedPageIndex == 0 ? AppColors.black : AppColors.white;
+    final changeColor =
+        selectedPageIndex == 0 ? AppColors.black : AppColors.white;
     // final style = Theme.of(context)
     //     .textTheme
     //     .bodyText1!
@@ -29,28 +31,29 @@ class CustomBottomNavigationBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _bottomBarNavItem(context,0, 'Home', style, 'home'),
-            _bottomBarNavItem(context,1, 'Discover', style, 'search'),
+            _bottomBarNavItem(context, 0, 'Trang chủ', style, 'home'),
+            _bottomBarNavItem(context, 1, 'Khám phá', style, 'search'),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 15),
-              child: _addVideoNavItem(context,barHeight),),
-            _bottomBarNavItem(context,2, 'Inbox', style, 'message'),
-            _bottomBarNavItem(context,3, 'Profile', style, 'account')
+              child: _addVideoNavItem(context, barHeight),
+            ),
+            _bottomBarNavItem(context, 2, 'Tin nhắn', style, 'message'),
+            _bottomBarNavItem(context, 3, 'Cá nhân', style, 'account')
           ],
         ),
       ),
     );
-
   }
-  _bottomBarNavItem( BuildContext context,
-      int index, String label, TextStyle textStyle, String iconName) {
+
+  _bottomBarNavItem(BuildContext context, int index, String label,
+      TextStyle textStyle, String iconName) {
     bool isSelected = selectedPageIndex == index;
     Color iconAndTextColor = isSelected ? AppColors.black : AppColors.grey;
     if (isSelected && selectedPageIndex == 0) {
       iconAndTextColor = AppColors.white;
     }
     return Container(
-      width:  (MediaQuery.of(context).size.width) / 5 ,
+      width: (MediaQuery.of(context).size.width) / 5,
       child: InkWell(
         onTap: () {
           onIconTap(index);
@@ -81,29 +84,37 @@ class CustomBottomNavigationBar extends StatelessWidget {
   }
 
   _addVideoNavItem(BuildContext context, double height) {
-    return Container(
-      height: height - 20,
-      width: MediaQuery.of(context).size.width  / 5 - 30,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        gradient:
-        LinearGradient(colors: [AppColors.lightBlue, AppColors.lightPink]),
-      ),
-      child: Center(
-        child: Container(
-          width: MediaQuery.of(context).size.width  / 5 - 36,
-          height: height - 20,
-          decoration: BoxDecoration(
-            color:
-            selectedPageIndex == 0 ? AppColors.white : AppColors.black,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Icon(Icons.add_outlined,
-            color: selectedPageIndex == 0 ? AppColors.black : AppColors.white,
+    return GestureDetector(
+      onTap: () => {
+        Navigator.push(context, MaterialPageRoute(
+            fullscreenDialog: true,
+            builder: (context) {
+          return AddVideoPage();
+        }))
+      },
+      child: Container(
+        height: height - 20,
+        width: MediaQuery.of(context).size.width / 5 - 30,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          gradient: LinearGradient(
+              colors: [AppColors.lightBlue, AppColors.lightPink]),
+        ),
+        child: Center(
+          child: Container(
+            width: MediaQuery.of(context).size.width / 5 - 36,
+            height: height - 20,
+            decoration: BoxDecoration(
+              color: selectedPageIndex == 0 ? AppColors.white : AppColors.black,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Icon(
+              Icons.add_outlined,
+              color: selectedPageIndex == 0 ? AppColors.black : AppColors.white,
+            ),
           ),
         ),
       ),
     );
   }
-
 }

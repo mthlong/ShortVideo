@@ -46,6 +46,7 @@ dependencies:
   flutter_svg: ^0.22.0
   page_view_indicators: ^2.0.0
   preload_page_view: ^0.1.6
+  camera: ^0.9.4+12
 
 
 
