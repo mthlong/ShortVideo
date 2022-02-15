@@ -5,6 +5,7 @@ import 'package:final_app/app/ui/widget/my_list_video.dart';
 import 'package:final_app/app/ui/widget/my_love_list_video.dart';
 import 'package:final_app/app/ui/widget/space.dart';
 import 'package:final_app/app/ui/widget/space_width.dart';
+import 'package:final_app/app/ui/widget/yes_no_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -89,15 +90,23 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
         Width(space: 10),
-        Container(
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-              border: Border.all(color: AppColors.grey.withOpacity(0.8)),
-              borderRadius: BorderRadius.circular(5)),
-          child: SvgPicture.asset(
-            'assets/images/logout.svg',
-            width: 17,
-            height: 17,
+        InkWell(
+          onTap: () {
+            showDialog(context: context,
+                builder: (BuildContext context){
+              return YesNoDiaglog(key: key, label: "Bạn chắc chắn muốn ?", decription: "Đăng xuất khỏi tài khoản", eventYes: () {});
+                });
+          },
+          child: Container(
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                border: Border.all(color: AppColors.grey.withOpacity(0.8)),
+                borderRadius: BorderRadius.circular(5)),
+            child: SvgPicture.asset(
+              'assets/images/logout.svg',
+              width: 17,
+              height: 17,
+            ),
           ),
         )
       ],
