@@ -46,7 +46,7 @@ class _HomeSideBarState extends State<HomeSideBar>
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          _profileImageButton(widget.video.postedBy.profileImageUrl),
+          // _profileImageButton(widget.video.postedBy.profileImageUrl),
           _sideBarItem('heart', widget.video.likes.toString(), style),
           _sideBarItem('comment', widget.video.likes.toString(), style),
           _sideBarItem('share', '0', style),

@@ -1,11 +1,15 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:final_app/app/constants/app_colors.dart';
 import 'package:final_app/app/constants/app_images.dart';
 import 'package:final_app/app/constants/app_text_style.dart';
+import 'package:final_app/app/ui/pages/confirm_screen.dart';
 import 'package:final_app/app/ui/widget/space.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../main.dart';
 
@@ -22,13 +26,20 @@ class _AddVideoPageState extends State<AddVideoPage> {
   CameraController _cameraController = CameraController(cameras.first, ResolutionPreset.medium);
   int _selectedTab = 0;
 
+  pickVideo(ImageSource src, BuildContext context) async {
+    final video = await ImagePicker().pickVideo(source: src);
+    if(video != null) {
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>ConfirmScreen(videoFile: File(video.path), videoPath: video.path,)));
+
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     _cameraController.initialize().then((value) {
       if(!mounted) return;
       setState(() {
-
       });
     });
   }
@@ -164,12 +175,15 @@ class _AddVideoPageState extends State<AddVideoPage> {
               radius: 30,
             ),
           ),
-          _buildIconWithText(
-              'upload',
-              "Tải lên",
-              AppTextStyle.appTextStyle(
-                  context, 11, AppColors.white, FontWeight.bold),
-              40),
+          InkWell(
+            onTap: () =>pickVideo(ImageSource.gallery, context),
+            child: _buildIconWithText(
+                'upload',
+                "Tải lên",
+                AppTextStyle.appTextStyle(
+                    context, 11, AppColors.white, FontWeight.bold),
+                40),
+          ),
         ],
       ),
     );

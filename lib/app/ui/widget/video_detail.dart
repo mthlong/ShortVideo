@@ -21,7 +21,8 @@ class VideoDetail extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text(
-            '@${video.postedBy.username}',
+            // '@${video.postedBy.username}',
+            "",
             style: AppTextStyle.appTextStyle(
                 context, 15, AppColors.white, FontWeight.bold),
           ),
@@ -47,7 +48,7 @@ class VideoDetail extends StatelessWidget {
               ),
               const Width(space: 8),
               Container(height: 20, width: MediaQuery.of(context).size.width / 2, child: Marquee(
-                text: "${video.audioName}   •   ",
+                text: "${""}   •   ",
                 velocity: 8,
                 style: AppTextStyle.appTextStyle(context, 13, AppColors.white, FontWeight.w100),
               ),),

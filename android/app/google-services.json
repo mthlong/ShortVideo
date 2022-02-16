@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "324812249442",
+    "project_id": "shortvideo-25f39",
+    "storage_bucket": "shortvideo-25f39.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:324812249442:android:34b345cf3a65f19685743b",
+        "android_client_info": {
+          "package_name": "com.mthlong.final_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "324812249442-gpgkcv3a77stp9m61st8jk28h7r0fpvl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5JH7KdpxxLGQfsIbnePPFJ9vnrg7bWkI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "324812249442-gpgkcv3a77stp9m61st8jk28h7r0fpvl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

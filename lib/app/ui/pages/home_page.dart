@@ -23,39 +23,41 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: _buildAppBar(context),
-        body: PreloadPageView.builder(
-            onPageChanged: (int page) {
-              setState(() {
-                _snappedPageIndex = page;
-              });
-            },
-            preloadPagesCount: 3,
-            scrollDirection: Axis.vertical,
-            itemCount: videos.length,
-            itemBuilder: (context, index) {
-              return Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  VideoTile(video: videos[index], currentIndex: index, snappedPageIndex: _snappedPageIndex,),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Expanded(
-                          flex: 3,
-                          child: Container(
-                            height: MediaQuery.of(context).size.height / 4,
-                            child: VideoDetail(video: videos[index],),
-                          )),
-                      Expanded(
-                          child: Container(
-                        height: MediaQuery.of(context).size.height / 1.75,
-                        child: HomeSideBar(video: videos[index],),
-                      ))
-                    ],
-                  )
-                ],
-              );
-            }));
+        body: Container()
+        // PreloadPageView.builder(
+        //     onPageChanged: (int page) {
+        //       setState(() {
+        //         _snappedPageIndex = page;
+        //       });
+        //     },
+        //     preloadPagesCount: 3,
+        //     scrollDirection: Axis.vertical,
+        //     itemCount: videos.length,
+        //     itemBuilder: (context, index) {
+        //       return Stack(
+        //         alignment: Alignment.bottomCenter,
+        //         children: [
+        //           VideoTile(video: videos[index], currentIndex: index, snappedPageIndex: _snappedPageIndex,),
+        //           Row(
+        //             crossAxisAlignment: CrossAxisAlignment.end,
+        //             children: [
+        //               Expanded(
+        //                   flex: 3,
+        //                   child: Container(
+        //                     height: MediaQuery.of(context).size.height / 4,
+        //                     child: VideoDetail(video: videos[index],),
+        //                   )),
+        //               Expanded(
+        //                   child: Container(
+        //                 height: MediaQuery.of(context).size.height / 1.75,
+        //                 child: HomeSideBar(video: videos[index],),
+        //               ))
+        //             ],
+        //           )
+        //         ],
+        //       );
+        //     })
+    );
   }
 
   AppBar _buildAppBar(BuildContext context) {
