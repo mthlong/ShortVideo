@@ -4,28 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:video_player/video_player.dart';
 
-class VideoTile extends StatefulWidget {
-  const VideoTile({Key? key,
-    required this.videoUrl,
-    required this.snappedPageIndex,
-    required this.currentIndex})
+class VideoOnly extends StatefulWidget {
+  const VideoOnly({Key? key,
+    required this.videoUrl,})
       : super(key: key);
   final String videoUrl;
-  final int snappedPageIndex;
-  final int currentIndex;
+
 
   @override
-  _VideoTileState createState() => _VideoTileState();
+  _VideoOnlyState createState() => _VideoOnlyState();
 }
 
-class _VideoTileState extends State<VideoTile> {
+class _VideoOnlyState extends State<VideoOnly> {
   late VideoPlayerController _videoPlayerController;
   late Future _initializeVideoPlayer;
-  bool _isVideoPlaying = true;
+  bool _isVideoPlaying = false;
 
   void playAndStopVideo() {
-    _isVideoPlaying ? _videoPlayerController.play() : _videoPlayerController
-        .pause();
+    _isVideoPlaying ? _videoPlayerController.pause() : _videoPlayerController
+        .play();
     setState(() {
       _isVideoPlaying = !_isVideoPlaying;
     });
@@ -50,9 +47,6 @@ class _VideoTileState extends State<VideoTile> {
 
   @override
   Widget build(BuildContext context) {
-    (widget.snappedPageIndex == widget.currentIndex && _isVideoPlaying)
-        ? _videoPlayerController.play()
-        : _videoPlayerController.pause();
     return GestureDetector(
       onTap: () {playAndStopVideo();},
       child: Container(

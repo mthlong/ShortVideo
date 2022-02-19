@@ -11,9 +11,7 @@ import 'package:final_app/app/data/entity/user.dart' as model;
 class AuthController extends GetxController {
   final RxBool isLoading = false.obs;
   late Rx<User?> _user;
-
-
-
+  User get user => _user.value!;
 
   static AuthController instance = Get.find();
   Future<String> _uploadToStorage(File file) async {
@@ -38,13 +36,13 @@ class AuthController extends GetxController {
         isLoading.value = true;
         UserCredential cred = await firebaseAuth.createUserWithEmailAndPassword(
             email: email, password: password);
-        String dowloadUrl = await _uploadToStorage(image);
+        String downloadUrl  = await _uploadToStorage(image);
         model.User user = model.User(
             name: username,
             email: email,
             uid: cred.user!.uid,
-            profilePhoto: dowloadUrl,
-            bio: cred.user!.uid);
+            profilePhoto: downloadUrl ,
+            bio: "Chưa cập nhật");
         await firestore.collection('users').doc(cred.user!.uid).set(user.toJson());
         Get.snackbar('Tạo tài khoản thành công', 'Vui lòng đăng nhập vào ứng dụng');
         isLoading.value = false;
@@ -52,6 +50,8 @@ class AuthController extends GetxController {
         Get.snackbar('Lỗi khi tạo tài khoản', 'Vui lòng điền đủ vào các trường');
       }
     } catch (e) {
+      print("Đây nè" + e.toString());
+      isLoading.value = false;
       Get.snackbar('Lỗi khi tạo tài khoản', e.toString());
     }
   }
@@ -63,12 +63,16 @@ class AuthController extends GetxController {
         Get.snackbar('Đăng nhập thành công', 'Ứng dụng đang được chuyển tới trang chủ');
         isLoading.value = false;
       } else
-
         Get.snackbar('Lỗi đăng nhập', 'Tài khoản hoặc mật khẩu không được để trắng');
     } catch (e) {
-      Get.snackbar('Lỗi đăng nhập', 'Tài khoản hoặc mật khẩu không chính xác');
+      isLoading.value = false;
+      print("Đây nè" + e.toString());
+      Get.snackbar('Lỗi đăng nhập', e.toString());
     }
   }
+  void signOut() async {
+    await firebaseAuth.signOut();
+}
   @override
   void onInit()  {
     isLoading.value = false;

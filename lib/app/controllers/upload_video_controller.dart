@@ -41,7 +41,7 @@ class UploadVideoController extends GetxController {
   }
 
   // upload video
-  uploadVideo(String songName, String hashTag,String caption, String videoPath) async {
+  uploadVideo(String caption, String hashTag,String songName, String videoPath) async {
     isLoading.value = true;
     try {
       String uid = firebaseAuth.currentUser!.uid;
@@ -68,15 +68,19 @@ class UploadVideoController extends GetxController {
       );
       await firestore.collection('videos').doc('Video $len').set(
         video.toJson(),
+
       );
-      print(progress.value);
+      Get.snackbar(
+        'Xác nhận',
+        'Đã tải lên video thành công !!!',
+      );
       Get.back();
     } catch (e) {
       Get.snackbar(
         'Error Uploading Video',
         e.toString(),
       );
-    };
+    }
     isLoading.value = false;
   }
   @override

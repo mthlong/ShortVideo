@@ -1,4 +1,5 @@
 import 'package:final_app/app/constants/app_colors.dart';
+import 'package:final_app/app/constants/firebase_constants.dart';
 import 'package:final_app/app/ui/pages/add_video_page.dart';
 import 'package:final_app/app/ui/pages/discover_page.dart';
 import 'package:final_app/app/ui/pages/home_page.dart';
@@ -18,11 +19,11 @@ class NavigationContainer extends StatefulWidget {
 class _NavigationContainerState extends State<NavigationContainer> {
   int _selectedPageIndex = 0;
 
-  static const List<Widget> _pages = [
+  static List<Widget> _pages = [
     HomePage(),
     DiscoverPage(),
     InboxPage(),
-    ProfilePage()
+    ProfilePage(uid: authController.user.uid)
   ];
 
   void _onIconTapper(int index) {

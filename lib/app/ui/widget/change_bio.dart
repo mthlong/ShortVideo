@@ -1,3 +1,5 @@
+import 'package:final_app/app/constants/firebase_constants.dart';
+import 'package:final_app/app/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:final_app/app/constants/app_colors.dart';
@@ -7,6 +9,7 @@ import 'package:final_app/app/ui/widget/space_width.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get.dart';
 
 class ChangeBio extends StatefulWidget {
   const ChangeBio({Key? key}) : super(key: key);
@@ -19,7 +22,7 @@ class _ChangeBioState extends State<ChangeBio> {
   String _enteredText = '';
   final TextEditingController _textFieldController =
   new TextEditingController();
-
+  ProfileController profileController = Get.find<ProfileController>();
   @override
   void initState() {
     super.initState();
@@ -46,12 +49,21 @@ class _ChangeBioState extends State<ChangeBio> {
         ),
         actions: [
           Center(
-            child: Text("Lưu",
-                style: AppTextStyle.appTextStyle(
-                    context,
-                    17,
-                    AppColors.redButton,
-                    FontWeight.w200)),
+            child: InkWell(
+              onTap: () {
+                profileController.updateBio(authController.user.uid, _textFieldController.text);
+                _textFieldController.text = "";
+                profileController.refresh();
+                profileController.update();
+                profileController.user['bio'].update();
+              } ,
+              child: Text("Lưu",
+                  style: AppTextStyle.appTextStyle(
+                      context,
+                      17,
+                      AppColors.redButton,
+                      FontWeight.w200)),
+            ),
           ),
           Width(space: 10)
         ],

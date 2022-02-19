@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:final_app/app/constants/app_colors.dart';
 import 'package:final_app/app/constants/app_text_style.dart';
+import 'package:final_app/app/ui/pages/search_screen.dart';
 import 'package:final_app/app/ui/widget/discover_section.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:getwidget/components/shimmer/gf_shimmer.dart';
 import 'package:page_view_indicators/circle_page_indicator.dart';
 
@@ -43,7 +45,9 @@ class _DiscoverPageState extends State<DiscoverPage> {
     _timer.cancel();
     super.dispose();
   }
-
+  void getToSearchScreen() {
+    Get.to(()=> SearchScreen());
+  }
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -63,13 +67,16 @@ class _DiscoverPageState extends State<DiscoverPage> {
               textAlignVertical: TextAlignVertical.center,
               cursorColor: Colors.grey.shade500,
               decoration: InputDecoration(
-                hintText: "Search...",
+                hintText: "Tìm kiếm...",
                 hintStyle: AppTextStyle.appTextStyle(
                     context, 16, Colors.grey.shade500, FontWeight.w500),
                 border: InputBorder.none,
-                prefixIcon: Icon(
-                  CupertinoIcons.search,
-                  color: AppColors.black,
+                prefixIcon: InkWell(
+                  onTap: () =>getToSearchScreen(),
+                  child: Icon(
+                    CupertinoIcons.search,
+                    color: AppColors.black,
+                  ),
                 ),
               ),
               style: AppTextStyle.appTextStyle(

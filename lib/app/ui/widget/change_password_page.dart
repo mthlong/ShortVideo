@@ -1,3 +1,4 @@
+import 'package:final_app/app/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:final_app/app/constants/app_colors.dart';
@@ -6,6 +7,7 @@ import 'package:final_app/app/ui/widget/space.dart';
 import 'package:final_app/app/ui/widget/space_width.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
 class ChangePass extends StatefulWidget {
@@ -21,6 +23,8 @@ class _ChangePassState extends State<ChangePass> {
   final TextEditingController _textFieldController =
   TextEditingController();
   final TextEditingController _textEditingControllerPass = TextEditingController();
+
+  ProfileController profileController = Get.find<ProfileController>();
 
   @override
   void initState() {
@@ -47,13 +51,24 @@ class _ChangePassState extends State<ChangePass> {
           ),
         ),
         actions: [
-          Center(
-            child: Text("Lưu",
-                style: AppTextStyle.appTextStyle(
-                    context,
-                    17,
-                    isMatch ? AppColors.redButton : AppColors.grey,
-                    FontWeight.w200)),
+          InkWell(
+            onTap: () {
+              if(isMatch) {
+                profileController.changePassword(_textEditingControllerPass.text);
+                _textEditingControllerPass.text = "";
+                _textFieldController.text = "";
+              } else {
+                Get.snackbar('Lỗi', 'Bạn đã nhập mật khẩu không trùng! ');
+              }
+            },
+            child: Center(
+              child: Text("Lưu",
+                  style: AppTextStyle.appTextStyle(
+                      context,
+                      17,
+                      isMatch ? AppColors.redButton : AppColors.grey,
+                      FontWeight.w200)),
+            ),
           ),
           Width(space: 10)
         ],

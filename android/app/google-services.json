@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "324812249442",
-    "project_id": "shortvideo-25f39",
-    "storage_bucket": "shortvideo-25f39.appspot.com"
+    "project_number": "507350859635",
+    "project_id": "project-shortvideo",
+    "storage_bucket": "project-shortvideo.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:324812249442:android:34b345cf3a65f19685743b",
+        "mobilesdk_app_id": "1:507350859635:android:bddf1326730947ea7c8f06",
         "android_client_info": {
           "package_name": "com.mthlong.final_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "324812249442-gpgkcv3a77stp9m61st8jk28h7r0fpvl.apps.googleusercontent.com",
+          "client_id": "507350859635-i5phidootdcqifnvc88buo4trck6a85e.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD5JH7KdpxxLGQfsIbnePPFJ9vnrg7bWkI"
+          "current_key": "AIzaSyBw3qdbzbVtOMb78aXW2gtvLhwqsWAUMnc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "324812249442-gpgkcv3a77stp9m61st8jk28h7r0fpvl.apps.googleusercontent.com",
+              "client_id": "507350859635-i5phidootdcqifnvc88buo4trck6a85e.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

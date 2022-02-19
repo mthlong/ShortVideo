@@ -64,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               _buildLogo(),
               _buidTextLogin(context),
-              _buidTextFeildEmail(),
+              _buildTextFieldEmail(),
               _buildTextFeildPass(),
               _buildCheckBoxAndText(context),
               _buildTwoButtons(context),
@@ -148,7 +148,7 @@ class _LoginPageState extends State<LoginPage> {
                           padding: const EdgeInsets.symmetric(
                               vertical: 8.0, horizontal: 40.0),
                           child: Image.asset(
-                            'assets/images/loading_button.gif',
+                            'assets/images/loading_white.gif',
                             width: 25,
                             height: 25,)
                         ),
@@ -256,7 +256,7 @@ class _LoginPageState extends State<LoginPage> {
             );
   }
 
-  Container _buidTextFeildEmail() {
+  Container _buildTextFieldEmail() {
     return Container(
               margin: const EdgeInsets.all(8.0),
               child: TextField(
